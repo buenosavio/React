@@ -1,0 +1,80 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 15px;
+    background-color: black;
+    color: aliceblue;
+}
+.logoHeader {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.logoHeader img {
+    max-width: 60%;
+}
+
+.logoHeader a {
+    width: 200px;
+}
+
+.linkHeader {
+    display: flex;
+    list-style: none;
+    margin-left: 5px;
+}
+
+.itens {
+    display: flex;
+    justify-content: center;
+}
+
+.itens li {
+    background-color: white;
+    border: 3px solid black;
+    padding: 5px;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+}
+
+.itens img {
+    max-width: 20%;
+}
+
+.titulos {
+    text-align: center;
+    padding: 15px;
+}
+
+.form {
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    text-align: center;
+    margin: 10px;
+    width: 500px;
+    height: 25px;
+    border-radius: 25px;
+}
+
+.iframe {
+    width: 600px;
+    height: 350px;
+}
+
+.padinzin {
+    margin-left: 15px;
+    font-size: 30px;
+    text-decoration: none ;
+    color: white;
+}
