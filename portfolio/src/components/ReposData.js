@@ -10,29 +10,32 @@ const ReposData = () =>{
     },[])
 
     const [dados, setDados] = useState([]);
+    const [loading, setLoading] = useState([]);
 
     const getData = async () => {
         try{
-            const response = await axios.get('https://api.github.com/users/buenosavio/repos');
-            setDados(response.data)
-            console.log(response.data)
-
+            const {data} = await axios.get('https://api.github.com/users/buenosavio/repos');
+            setDados(data)
+            setLoading(Object.keys(data))
         } catch (err) {
             alert('Houve um erro ao carregar os dados!', err)
         }
     }
       return (
-          <div >
-              <ul className={Style.cards}>
-              {dados.map((repos) =>
-              ( 
-                  <Cards id={repos.id} reposName={repos.name} description={repos.description} language={repos.language} url={repos.svn_url}/>
-              )
-              )}
-              </ul>
-              
-          </div>
+          <>
+          {loading ? 
+          (<>
+            <div>
+                <h2 className={Style.center}>My projects avaiable on GitHub</h2>
+                <ul className={Style.cards}>
+                {dados.map((repos) =>( 
+                    <Cards key={repos.id} reposName={repos.name} description={repos.description} language={repos.language} url={repos.svn_url}/>
+                ))}
+                </ul>              
+            </div>
+          </>)
+          : alert('Nehum dado encontrado!')}
+        </>
       )
-
 }
 export default ReposData;
