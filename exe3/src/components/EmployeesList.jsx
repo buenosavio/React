@@ -1,13 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { EmployeesContext } from "../context/EmployeesContext";
 import Style from './Style.module.css'
 
 const EmployeesList = () => {
     const {listEmployees,setListEmployees} = useContext(EmployeesContext)
-    const {id, setId} = useContext(EmployeesContext);
-    const {name, setName} = useContext(EmployeesContext);
-    const {mail, setMail} = useContext(EmployeesContext);
-    const {carrer, setCarrer} = useContext(EmployeesContext);
+    const {setId} = useContext(EmployeesContext);
+    const {setName} = useContext(EmployeesContext);
+    const {setMail} = useContext(EmployeesContext);
+    const {setCarrer} = useContext(EmployeesContext);
+    const {setBtnMain} = useContext(EmployeesContext);
 
     const deleteEmployee = (id) => {
         setListEmployees(listEmployees.filter(e => {return e.id !== id})) 
@@ -19,6 +20,7 @@ const EmployeesList = () => {
         setName(name)    
         setMail(mail)    
         setCarrer(carrer)   
+        setBtnMain('Atualizar')
     }
  
     return (

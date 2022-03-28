@@ -8,9 +8,10 @@ const EmployeesProvider = ({children}) => {
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
     const [carrer, setCarrer] = useState('')
+    const [btnMain, setBtnMain] = useState('Cadastrar')
 
     return(
-        <EmployeesContext.Provider value={{name, setName, mail, setMail, carrer, setCarrer, listEmployees, setListEmployees, id, setId}}>
+        <EmployeesContext.Provider value={{name, setName, mail, setMail, carrer, setCarrer, listEmployees, setListEmployees, id, setId, btnMain, setBtnMain}}>
             {children}
         </EmployeesContext.Provider>
     )

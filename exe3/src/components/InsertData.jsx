@@ -8,6 +8,7 @@ const InsertData = () => {
     const {mail, setMail} = useContext(EmployeesContext);
     const {carrer, setCarrer} = useContext(EmployeesContext);
     const {listEmployees, setListEmployees} = useContext(EmployeesContext);
+    const {btnMain, setBtnMain} = useContext(EmployeesContext);
 
     const validName = (name) => {
         var re = /^[a-zA-Z ]{2,30}$/;
@@ -43,6 +44,7 @@ const InsertData = () => {
         setName('');      
         setMail('');
         setCarrer('');
+        setBtnMain('Cadastrar')
     }
     
     return(
@@ -50,7 +52,7 @@ const InsertData = () => {
             <input type="text" placeholder="Informe o nome" onChange={(char) => setName(char.target.value)} value={name}/>
             <input type="text" placeholder="Informe o e-mail" onChange={(char) => setMail(char.target.value)} value={mail}/>
             <input type="text" placeholder="Informe a profissão" onChange={(char) => setCarrer(char.target.value)} value={carrer}/>
-            <button type="submit" onClick={() => InsertEmployee()}> Salvar </button> 
+            <button type="submit" onClick={() => InsertEmployee()}> {btnMain} </button> 
         </div>
     )
 }
