@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Formik, Field, Form } from 'formik';
 import { LoginContext } from "../context/LoginContext";
 import Menu from "../component/Menu";
+import Footer from "../component/Footer";
 
 const Login = () => {
     const {FazerLogin} = useContext(LoginContext)
@@ -25,6 +26,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </Form>
         </Formik>
+        <Footer />
         </>
     )
 }

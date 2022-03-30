@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import moment from "moment";
+import Footer from "../component/Footer";
 
 const User = () => {
     const navigate = useNavigate()
@@ -15,10 +16,9 @@ const User = () => {
         }
         getPeople(); 
     },[])
-
     const getPeople = async () => {        
             try {
-                const {data} = await api.get('/pessoa', { headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwZXNzb2EtYXBpIiwic3ViIjoiMiIsImlhdCI6MTY0ODYwMTk1MywiZXhwIjoxNjQ4Njg4MzUzfQ.xmWjbe1kKCtJMSnRRPRvxz0ya5XAOcgvc6Q-Y7bGQvk' } })
+                const {data} = await api.get('/pessoa')
                 setData(data)
             } catch (error) {
                 console.log(error)
@@ -38,7 +38,7 @@ const User = () => {
                     <p>{people.email}</p>
                 </div>
             ))}        
-        
+        <Footer/>
     </>    
     )
 }

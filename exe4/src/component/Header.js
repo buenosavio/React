@@ -7,10 +7,10 @@ const Header = () => {
     const {FazerLogoff} = useContext(LoginContext)
 
     return(
-        <div>
+        <header>
             <Menu />
             <button onClick={() => FazerLogoff()}>Logoff</button>
-        </div>
+        </header>
     )
 }
 

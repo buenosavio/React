@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 
 export const LoginContext = createContext();
@@ -14,7 +14,7 @@ const LoginProvider = ( {children} ) => {
             setToken(data)
             localStorage.setItem('token',token)      
             navigate("/")
-            api.defaults.headers.common['Authorization'] = `Bearer ${data}`;
+            api.defaults.headers.common['Authorization'] = data            
         } catch (error) {
             console.log(error) 
         }

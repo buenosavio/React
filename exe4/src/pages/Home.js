@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../component/Footer";
 import Header from "../component/Header";
 
 
@@ -17,6 +18,7 @@ const Home = () => {
     <>
     <Header/>
     <h1> Home </h1>
+    <Footer />
     </>    
     )
 }
