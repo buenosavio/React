@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { Formik, Field, Form } from 'formik';
 import { LoginContext } from "../context/LoginContext";
+import Menu from "../component/Menu";
 
 const Login = () => {
     const {FazerLogin} = useContext(LoginContext)
     return (
+        <>
+        <Menu />
         <Formik
             initialValues={{
                 usuario: '',
@@ -22,6 +25,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </Form>
         </Formik>
+        </>
     )
 }
 
