@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { Formik, Field, Form } from 'formik';
 import { LoginContext } from "../context/LoginContext";
-import Menu from "../component/Menu";
 import Footer from "../component/Footer";
+import Style from './Style.module.css'
+import Header from "../component/Header";
 
 const Login = () => {
     const {FazerLogin} = useContext(LoginContext)
     return (
         <>
-        <Menu />
+        <Header />
+        <div className={Style.login}>
         <Formik
             initialValues={{
                 usuario: '',
@@ -16,8 +18,8 @@ const Login = () => {
             }}
             onSubmit={(values) => FazerLogin(values)}
         >   
-            <Form>
-                <label htmlFor="usuario">Usuario</label>
+            <Form className={Style.form}> 
+                <label htmlFor="usuario" >Usuario</label>
                 <Field id="usuario" name='usuario' placeholder="Digite seu usuário" />
 
                 <label htmlFor="senha">Senha</label>
@@ -26,6 +28,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </Form>
         </Formik>
+        </div>
         <Footer />
         </>
     )

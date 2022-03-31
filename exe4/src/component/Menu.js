@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import Style from '../pages/Style.module.css'
 
 const Menu = () => {
 
@@ -9,20 +10,17 @@ const Menu = () => {
         return(loginOk)
     }
 
-    const navigateFunction = (page) => {
-        navigate(`/${page}`)
-    }
-
     return (
         <nav>
             <ul> 
                 {isLogged() 
                 ? 
-                (<>
-                    <a onClick={() => {navigateFunction('')}}><li>Home</li></a>
-                    <a onClick={() => {navigateFunction('user')}}><li>User</li></a>
-                </>) 
-                : <a href="/login"><li>Login</li></a>
+                (<div>
+                    <Link to='/'><li className={Style.li}>Home</li></Link>
+                    <Link to='/user'><li className={Style.li}>User</li></Link>
+                    <Link to='/address'><li className={Style.li}>Adress</li></Link>
+                </div>) 
+                :   <Link to='/login'><li className={Style.linkLogin}>Login</li></Link>
                 }
             </ul>
         </nav>
