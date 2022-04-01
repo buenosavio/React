@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 import { api } from "../api";
 import Header from "../component/Header";
 import moment from "moment";
@@ -8,12 +9,12 @@ import Loading from "../component/loading/Loading";
 import Error from "../component/error/Error";
 import Style from '../pages/Style.module.css'
 import imgContact from '../component/img/contato.svg'
+import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const User = () => {
     const navigate = useNavigate()
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const {loading, error, getPeople, data} = useContext(UserContext)
     
     useEffect(()=>{
         const loginOk = localStorage.getItem('token')
@@ -24,16 +25,28 @@ const User = () => {
 
     },[])
 
-    const getPeople = async () => {        
-        try {
-            const {data} = await api.get('/pessoa')
-            setData(data)
-            setLoading(false)
-        } catch (error) {
-            console.log(error)
-            setLoading(false)
-            setError(true)
-        }
+    const handleDelete = async (idPessoa) => {
+        confirmAlert({
+            title: 'Confirmar',
+            message: 'Tem certeza que deseja excluir?',
+            buttons: [
+                {
+                    label:'Sim',
+                    onClick: async () => {
+                        try {
+                            await api.delete(`/pessoa/${idPessoa}`)
+                            console.log('idPessoa deletada: ', idPessoa)
+                            getPeople(); 
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    }
+                },
+                {
+                    label:'Não',
+                }
+            ]
+        })
     }
 
     if(loading) {
@@ -48,16 +61,19 @@ const User = () => {
     <>
         <Header/>
         <h1> Usuários </h1>
+        <Link to='/create-user'><button className={Style.btnCadastro}>Cadastrar</button></Link>
             {data.map((people) => (
-                <div className={Style.card}>
+                <div className={Style.card} key={people.idPessoa}>
                 <div>
                     <img src={imgContact} alt="" className={Style.img}/>
                 </div>
-                <div key={people.idPessoa} >
+                <div >
                     <h3>{people.nome}</h3>
                     <p>Nascimento: {moment(people.dataNascimento).format('DD/MM/YYYY') }</p>
                     <p>CPF: {people.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</p>
                     <p>{people.email}</p>
+                    <button onClick={() => handleDelete(people.idPessoa)} className={Style.btnDelete} >Deletar</button>                    
+                    <button onClick={() => navigate(`/create-user/${people.idPessoa}`)} className={Style.btnAtz}>Atualizar</button>
                 </div>
                 </div>
             ))}        
